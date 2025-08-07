@@ -19,7 +19,7 @@ def show_heatmaps(matrices, xlabel, ylabel, titles=None, figsize=(2.5, 2.5),
             if titles:
                 ax.set_title(titles[j])
     fig.colorbar(pcm, ax=axes, shrink=0.6);
-    
+    d2l.plt.show()
     
 attention_weights = torch.eye(10).reshape((1, 1, 10, 10))
 show_heatmaps(attention_weights, xlabel='Keys', ylabel='Queries')
