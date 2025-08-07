@@ -1,9 +1,10 @@
 import torch
+import matplotlib.pyplot as plt
 from d2l import torch as d2l
 
 
 def show_heatmaps(matrices, xlabel, ylabel, titles=None, figsize=(2.5, 2.5),
-                  cmap='Reds'):
+                  cmap='Reds', filename='heatmap.png'):
     """Show heatmaps of matrices."""
     d2l.use_svg_display()
     num_rows, num_cols, _, _ = matrices.shape
@@ -19,7 +20,9 @@ def show_heatmaps(matrices, xlabel, ylabel, titles=None, figsize=(2.5, 2.5),
             if titles:
                 ax.set_title(titles[j])
     fig.colorbar(pcm, ax=axes, shrink=0.6);
-    d2l.plt.show()
+    output_path = f'/kaggle/working/{filename}'
+    plt.savefig(output_path)
+    plt.close(fig) 
     
 attention_weights = torch.eye(10).reshape((1, 1, 10, 10))
 show_heatmaps(attention_weights, xlabel='Keys', ylabel='Queries')
